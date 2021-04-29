@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "33889689084",
+    "project_id": "fir-notification-odoo",
+    "storage_bucket": "fir-notification-odoo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33889689084:android:1b7dd21cf09fee414c6679",
+        "android_client_info": {
+          "package_name": "com.app_ui_2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33889689084-8r6ri263afpnl7l88ftb8hkc88h7u28d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app_ui_2",
+            "certificate_hash": "e7dfd78614bfc5207125f6786d463a889ef3945d"
+          }
+        },
+        {
+          "client_id": "33889689084-kavk9dt7d5sbddkdq3c6au3lkesbhljr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRl0aUCaF4aVhzq4GTXqh2dfQHAsxOZT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "33889689084-kavk9dt7d5sbddkdq3c6au3lkesbhljr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
