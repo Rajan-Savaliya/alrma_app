@@ -81,50 +81,55 @@ const App = () => {
     );
   });
   const start30s = (time) => {
-    const interval = setInterval(() => {
-      showNotification(
-        '10sec',
-        'open app and click the button to stop the notification and weakup...',
-      );
-      var whoosh = new Sound('s_tap.mp3', Sound.MAIN_BUNDLE, (error) => {
-        if (error) {
-          console.log('failed to load the sound', error);
-          return;
-        }
-        console.log(
-          'duration in seconds: ' +
-            whoosh.getDuration() +
-            'number of channels: ' +
-            whoosh.getNumberOfChannels(),
+       interval = setInterval(() => {
+        showNotification(
+          '10sec',
+          'open app and click the button to stop the notification and weakup...',
         );
-        if (global.sound) global.sound.stop();
-        global.sound = whoosh;
-
-        whoosh.play((success) => {
-          if (success) {
-            console.log('successfully finished playing');
-          } else {
-            console.log('playback failed due to audio decoding errors');
+        var whoosh = new Sound('s_tap.mp3', Sound.MAIN_BUNDLE, (error) => {
+          if (error) {
+            console.log('failed to load the sound', error);
+            return;
           }
-        });
-      });
+          console.log(
+            'duration in seconds: ' +
+              whoosh.getDuration() +
+              'number of channels: ' +
+              whoosh.getNumberOfChannels(),
+          );
+          if (global.sound) global.sound.stop();
+          global.sound = whoosh;
 
-      whoosh.release();
-      clearTimeout(interval);
-    }, time);
+          whoosh.setNumberOfLoops(-1);
+          whoosh.setVolume(1);
+          whoosh.play((success) => {
+            if (success) {
+              console.log('successfully finished playing');
+            } else {
+              console.log('playback failed due to audio decoding errors');
+            }
+          });
+        });
+
+        whoosh.release();
+        clearTimeout(interval);
+      }, time);
   };
 
   const end30s = (remove) => {
     global.sound.stop();
+    clearInterval(global.stop);
+  };
 
-    whoosh.stop(() => {});
+  const clears = () => {
+    // set inter stop kari dai mean all stop right
+    clearInterval(interval);
   };
 
   return (
     <>
       <View
         style={{
-          // backgroundColor: 'red',
           position: 'absolute',
           height: '100%',
           width: '100%',
@@ -133,11 +138,10 @@ const App = () => {
         <LottieView
           source={require('./alarm.json')}
           style={{
-            backgroundColor: 'yellow',
-            // position: 'absolute',
+            // backgroundColor: "#" + ((1<<24)*Math.random() | 0).toString(16),
+            backgroundColor: 'orange',
             height: '95%',
             width: '100%',
-            // justifyContent: 'flex-end',
           }}
           colorFilters={[
             {
@@ -158,18 +162,16 @@ const App = () => {
       <View>
         <Text>press to set a 7 hours time out...</Text>
       </View>
-      <Button
-        // icon="camera"
-        mode="contained"
-        onPress={() => start30s(30000)}>
+      <Button mode="contained" onPress={() => start30s(15000)}>
         30 sec start
       </Button>
-      <Button
-        // icon="camera"
-        mode="contained"
-        onPress={() => end30s(true)}>
+      <Button mode="contained" onPress={() => end30s(true)}>
         stop
       </Button>
+      <Button mode="contained" onPress={() => clears()}>
+        clear2
+      </Button>
+
     </>
   );
 };
